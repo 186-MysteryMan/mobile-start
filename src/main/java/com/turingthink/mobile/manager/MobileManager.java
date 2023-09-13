@@ -73,37 +73,13 @@ public class MobileManager {
     }
 
     /**
-     * 通过token获取手机号码并保存到redis
+     * 通过token获取手机号码
      *
      * @param token
      * @return
      */
     public String getMobile(String token) throws Exception {
         //通过token获取手机号码
-        String mobile = redisTemplate.opsForValue().get(token);
-        if (Strings.isBlank(mobile)) {
-            mobile = getMobileByToken(token);
-            Assert.notBlank(mobile, "阿里云token未获取到手机号码");
-            redisTemplate.opsForValue().set(token, mobile, 1, TimeUnit.HOURS);
-        } else {
-            redisTemplate.delete(token);
-        }
-        return mobile;
-    }
-
-    /**
-     * 通过手机号码校验限制登录，更新时间15天
-     *
-     * @param mobile
-     * @param equipmentNo
-     * @return 返回手机号码
-     */
-    public void limitLogin(String mobile, String equipmentNo) throws Exception {
-        //先检查设备号绑定的账号是否和请求的账号一致（限制第二个账号登录）
-        String redisKey = LOGIN_EQUIPMENT_NO_REDIS_KEY + equipmentNo;
-        String redisMobile = redisTemplate.opsForValue().get(redisKey);
-        Assert.isTrue(Strings.isBlank(redisMobile) || redisMobile.equals(mobile), "该设备已绑定过账号，只能登录的账号为：" + mobile);
-        //登陆完后将设备号和账号绑定放至redis中（限制第二个账号登录）
-        redisTemplate.opsForValue().set(redisKey, mobile, 15, TimeUnit.DAYS);
+        return getMobileByToken(token);
     }
 }
