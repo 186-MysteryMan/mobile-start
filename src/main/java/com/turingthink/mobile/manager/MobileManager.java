@@ -3,7 +3,6 @@ package com.turingthink.mobile.manager;
 import com.aliyun.dypnsapi20170525.models.*;
 import com.aliyun.tea.TeaException;
 import com.turingthink.mobile.common.sms.SmsProperties;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.stereotype.Component;

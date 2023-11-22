@@ -21,15 +21,9 @@
     </properties>
 
     <dependencies>
-        <!--配合SpringSecurity做Session的集群存储-->
-        <dependency>
-            <groupId>org.springframework.session</groupId>
-            <artifactId>spring-session-data-redis</artifactId>
-        </dependency>
-        <!--redis-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis</artifactId>
+            <artifactId>spring-boot-starter</artifactId>
         </dependency>
 
         <!-- lombok -->
@@ -44,12 +38,6 @@
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
             <version>5.7.22</version>
-        </dependency>
-        <!--2.4以上版本需要增加读取bootstrap依赖-->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-bootstrap</artifactId>
-            <version>3.0.4</version>
         </dependency>
             <!--一键登录-->
             <dependency>

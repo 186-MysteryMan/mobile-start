@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.turingthink.mobile.manager.MobileManager\
+com.turingthink.mobile.manager.MobileManager

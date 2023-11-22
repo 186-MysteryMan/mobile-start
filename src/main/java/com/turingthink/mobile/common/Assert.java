@@ -2,9 +2,6 @@ package com.turingthink.mobile.common;
 
 import com.turingthink.mobile.common.execption.CustomException;
 import org.apache.logging.log4j.util.Strings;
-import org.springframework.util.CollectionUtils;
-
-import java.util.List;
 import java.util.Objects;
 
 /**
