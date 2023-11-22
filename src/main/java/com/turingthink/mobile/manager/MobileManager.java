@@ -75,6 +75,31 @@ public class MobileManager {
         return null;
     }
 
+    public String getH5Mobile(String spToken) throws Exception {
+        String accessKeyId = smsProperties.getAliyun().getAccessKeyId();
+        String accessKeySecret = smsProperties.getAliyun().getAccessKeySecret();
+        com.aliyun.dypnsapi20170525.Client client = MobileManager.createClient(accessKeyId, accessKeySecret);
+        com.aliyun.dypnsapi20170525.models.GetPhoneWithTokenRequest getPhoneWithTokenRequest = new com.aliyun.dypnsapi20170525.models.GetPhoneWithTokenRequest()
+                .setSpToken(spToken);
+        com.aliyun.teautil.models.RuntimeOptions runtime = new com.aliyun.teautil.models.RuntimeOptions();
+        try {
+            // 复制代码运行请自行打印 API 的返回值
+            GetPhoneWithTokenResponse phoneWithTokenWithOptions = client.getPhoneWithTokenWithOptions(getPhoneWithTokenRequest, runtime);
+            if (Objects.nonNull(phoneWithTokenWithOptions.getBody())
+                    && Objects.nonNull(phoneWithTokenWithOptions.getBody().getData())) {
+                return phoneWithTokenWithOptions.getBody().getData().getMobile();
+            }
+        } catch (TeaException error) {
+            // 如有需要，请打印 error
+            com.aliyun.teautil.Common.assertAsString(error.message);
+        } catch (Exception error) {
+            TeaException teaError = new TeaException(error.getMessage(), error);
+            // 如有需要，请打印 error
+            com.aliyun.teautil.Common.assertAsString(teaError.message);
+        }
+        return null;
+    }
+
 
     public VerifyPhoneWithTokenResponseBody.VerifyPhoneWithTokenResponseBodyGateVerify h5VerifyPhoneWithToken(String phone, String spToken) throws Exception {
         String accessKeyId = smsProperties.getAliyun().getAccessKeyId();
